@@ -1,0 +1,36 @@
+{
+  "orders": [
+      {
+        "id": 1,
+        "name": "Alex",
+        "ingredients": [
+        "sofritas",
+        "beans",
+        "sour cream",
+        "carnitas",
+        "queso fresco"
+        ]
+        },
+        {
+        "name": "Prissilla Escobar",
+        "ingredients": [
+        "beans",
+        "carnitas",
+        "sofritas",
+        "cilantro"
+        ],
+        "id": 2
+        },
+        {
+        "name": "Sloth",
+        "ingredients": [
+        "carnitas",
+        "queso fresco",
+        "sour cream",
+        "cilantro",
+        "beans"
+        ],
+        "id": 3
+        }
+  ]
+}
