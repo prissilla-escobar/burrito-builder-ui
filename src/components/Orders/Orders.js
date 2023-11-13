@@ -1,10 +1,10 @@
 import React from "react";
 import "./Orders.css";
 
-const Orders = (props) => {
-  const orderEls = props.orders.map((order) => {
+const Orders = ({ allOrders }) => {
+  const orderEls = allOrders.map((order) => {
     return (
-      <div className="order">
+      <div className="order" key={order.id}>
         <h3>{order.name}</h3>
         <ul className="ingredient-list">
           {order.ingredients.map((ingredient) => {
@@ -16,7 +16,11 @@ const Orders = (props) => {
   });
 
   return (
-    <section>{orderEls.length ? orderEls : <p>No orders yet!</p>}</section>
+    <section className="orders-container" key={orderEls.key}>
+      <div className="order-card-container">
+        {orderEls.length ? orderEls : <p>No orders yet!</p>}
+      </div>
+    </section>
   );
 };
 
