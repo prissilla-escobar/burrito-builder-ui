@@ -1,11 +1,23 @@
 import { useState } from "react";
 
-function OrderForm(props) {
+function OrderForm({ postForm }) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!name.length || !ingredients.length) {
+      alert('You need to enter a name and select at least one ingredient in order to submit an order. Thank you!')
+      return
+    }
+
+    const orderEntered = {
+      name: name,
+      ingredients: ingredients
+    }
+
+    postForm(orderEntered)
     clearInputs();
   }
 
@@ -28,12 +40,22 @@ function OrderForm(props) {
     "cilantro",
     "sour cream",
   ];
+
+  function checkIng(e, clickedIngredient) {
+    e.preventDefault()
+    if (ingredients.includes(clickedIngredient)) {
+      setIngredients(ingredients.filter(ingredient => ingredient !== clickedIngredient))
+    } else {
+      setIngredients([...ingredients, clickedIngredient])
+    }
+  }
+
   const ingredientButtons = possibleIngredients.map((ingredient) => {
     return (
       <button
         key={ingredient}
         name={ingredient}
-        // onClick={(e) => }
+        onClick={(e) => checkIng(e, e.target.name)}
       >
         {ingredient}
       </button>
@@ -47,14 +69,14 @@ function OrderForm(props) {
         placeholder="Name"
         name="name"
         value={name}
-        // onChange={(e) => }
+        onChange={(e) => setName(e.target.value)}
       />
 
       {ingredientButtons}
 
       <p>Order: {ingredients.join(", ") || "Nothing selected"}</p>
 
-      <button onClick={(e) => handleSubmit(e)}>Submit Order</button>
+      <button className='submit-button' onClick={(e) => handleSubmit(e)}>Submit Order</button>
     </form>
   );
 }
